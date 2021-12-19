@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { Paginator } from 'primereact/paginator';
+
+
 const Movie = () => {
     const[posts,setPosts]=useState([])
-    const [basicFirst, setBasicFirst] = useState(0);
-    const [basicRows, setBasicRows] = useState(10);
     
-    // const columns=[
-    //     {field: 'title', header: 'Title'},
-    //     {field: 'releaseDate', header: 'Year'},
-    //     {field: 'length', header: 'Ranning Time'},
-    //     {field: 'director', header: 'Director'},
-    //     {field: 'certification', header: 'Certification'},
-    //     {field: 'rating', header: 'Rating'},
-        
-    // ];
     
     useEffect(()=>{
         fetch('https://skyit-coding-challenge.herokuapp.com/movies')
@@ -38,12 +28,13 @@ const Movie = () => {
             <div className='card' >
                 
                 <DataTable value={posts} responsiveLayout='scroll'>
-                    <Column field='title' header='title'></Column>
-                    <Column field='releaseDate' header='Year'></Column>
-                    <Column field='length' header='Ranning Time'></Column>
-                    <Column field='director' header='Director'></Column>
-                    <Column field='certification' header='Certification'></Column>
-                    <Column field='rating' header='Rating'></Column>
+                    <Column filter filterPlaceholder='Search by title' style={{ minWidth: '12rem' }} field='title' header='Title'>
+                    </Column>
+                    <Column filter filterPlaceholder='Search by Year' style={{ minWidth: '12rem' }}  field='releaseDate' header='Year'></Column>
+                    <Column filter filterPlaceholder='Search by Time' style={{ minWidth: '12rem' }}  field='length' header='Ranning Time'></Column>
+                    <Column filter filterPlaceholder='Seven item selected' style={{ minWidth: '12rem' }}  field='director' header='Director'></Column>
+                    <Column filter filterPlaceholder='Selec a status' style={{ minWidth: '12rem' }}  field='certification' header='Certification'></Column>
+                    <Column filter filterPlaceholder='Search by Rating' style={{ minWidth: '12rem' }}  field='rating' header='Rating'></Column>
                 </DataTable>
                 
             </div>
