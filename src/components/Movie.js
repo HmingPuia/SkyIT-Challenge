@@ -7,29 +7,29 @@ const Movie = () => {
     const [basicFirst, setBasicFirst] = useState(0);
     const [basicRows, setBasicRows] = useState(10);
     
-    const columns=[
-        {field: 'title', header: 'Title'},
-        {field: 'releaseDate', header: 'Year'},
-        {field: 'length', header: 'Ranning Time'},
-        {field: 'director', header: 'Director'},
-        {field: 'certification', header: 'Certification'},
-        {field: 'rating', header: 'Rating'},
+    // const columns=[
+    //     {field: 'title', header: 'Title'},
+    //     {field: 'releaseDate', header: 'Year'},
+    //     {field: 'length', header: 'Ranning Time'},
+    //     {field: 'director', header: 'Director'},
+    //     {field: 'certification', header: 'Certification'},
+    //     {field: 'rating', header: 'Rating'},
         
-    ];
+    // ];
     
     useEffect(()=>{
         fetch('https://skyit-coding-challenge.herokuapp.com/movies')
         .then(res=>res.json())
         .then(data=>setPosts(data))
     })
-    const movieColumns=columns.map((col)=>{
-        return (
+    // const movieColumns=columns.map((col)=>{
+    //     return (
         
-        <Column key={col.field} field={col.field} header={col.header}/>
+    //     <Column key={col.field} field={col.field} header={col.header}/>
         
         
-        )
-    })
+    //     )
+    // })
     // Radio button
     
     return (
@@ -37,12 +37,14 @@ const Movie = () => {
             <h2>Favourite Movie List</h2>
             <div className='card' >
                 
-                <DataTable value={posts} responsiveLayout='scroll'
-                
-                >
-                    {movieColumns}
-
-                    </DataTable>
+                <DataTable value={posts} responsiveLayout='scroll'>
+                    <Column field='title' header='title'></Column>
+                    <Column field='releaseDate' header='Year'></Column>
+                    <Column field='length' header='Ranning Time'></Column>
+                    <Column field='director' header='Director'></Column>
+                    <Column field='certification' header='Certification'></Column>
+                    <Column field='rating' header='Rating'></Column>
+                </DataTable>
                 
             </div>
         </div>
