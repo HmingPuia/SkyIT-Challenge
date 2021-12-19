@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-
+import { InputText } from 'primereact/inputtext';
 
 const Movie = () => {
     const[posts,setPosts]=useState([])
-    
+    const[value,setValue]=useState('')
     
     useEffect(()=>{
         fetch('https://skyit-coding-challenge.herokuapp.com/movies')
         .then(res=>res.json())
         .then(data=>setPosts(data))
-    })
+    },[posts])
     // const movieColumns=columns.map((col)=>{
     //     return (
         
@@ -28,7 +28,8 @@ const Movie = () => {
             <div className='card' >
                 
                 <DataTable value={posts} responsiveLayout='scroll'>
-                    <Column filter filterPlaceholder='Search by title' style={{ minWidth: '12rem' }} field='title' header='Title'>
+                     
+                    <Column filter filterPlaceholder='Search by Title' style={{ minWidth:'12rem' }} field='title' header='Title'>
                     </Column>
                     <Column filter filterPlaceholder='Search by Year' style={{ minWidth: '12rem' }}  field='releaseDate' header='Year'></Column>
                     <Column filter filterPlaceholder='Search by Time' style={{ minWidth: '12rem' }}  field='length' header='Ranning Time'></Column>
